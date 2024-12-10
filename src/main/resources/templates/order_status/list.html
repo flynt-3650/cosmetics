@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Statuses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .add-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .add-button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #e6f7ff;
+        }
+
+        .actions a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .actions a:hover {
+            background-color: #f2f2f2;
+        }
+
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+<h1>Order Statuses</h1>
+<div class="container">
+    <a th:href="@{/order-status/new}" class="add-button">Add New Status</a>
+    <table>
+        <thead>
+        <tr>
+            <th>Status ID</th>
+            <th>Status Name</th>
+            <th>Status Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="status : ${orderStatuses}">
+            <td th:text="${status.statusId}"></td>
+            <td th:text="${status.statusName}"></td>
+            <td th:text="${status.statusDescription}"></td>
+            <td class="actions">
+                <a th:href="@{/order-status/edit(id=${status.statusId})}">Edit</a>
+                <a th:href="@{/order-status/delete(id=${status.statusId})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer>&copy; 2024 Adele Cosmetics</footer>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Basket Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      color: #333;
+    }
+
+    .form-container {
+      width: 50%;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    input, button {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      text-decoration: none;
+      color: #007BFF;
+      font-size: 16px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      margin: 20px 0;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+<h1 th:text="${basket.entryBasket == 0 ? 'Add New Basket Entry' : 'Edit Basket Entry'}"></h1>
+<div class="form-container">
+  <form th:action="@{/basket/save}" th:object="${basket}" method="post">
+    <input type="hidden" th:field="*{entryBasket}" />
+    <label for="applicationId">Application ID:</label>
+    <input type="number" id="applicationId" th:field="*{applicationId}" required />
+    <label for="productId">Product ID:</label>
+    <input type="number" id="productId" th:field="*{productId}" required />
+    <label for="productQuantity">Product Quantity:</label>
+    <input type="number" id="productQuantity" th:field="*{productQuantity}" required />
+    <label for="pricePerUnit">Price Per Unit:</label>
+    <input type="number" step="0.01" id="pricePerUnit" th:field="*{pricePerUnit}" required />
+    <label for="totalAmount">Total Amount:</label>
+    <input type="number" step="0.01" id="totalAmount" th:field="*{totalAmount}" required />
+    <button type="submit">Save</button>
+  </form>
+  <a th:href="@{/basket}" class="back-link">Back to Basket List</a>
+</div>
+<footer>&copy; 2024 Adele Cosmetics</footer>
+</body>
+</html>
