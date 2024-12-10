@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Applications List</title>
+</head>
+<body>
+<h1>Applications</h1>
+<a th:href="@{/applications/new}">Add New Application</a>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Client ID</th>
+    <th>Status ID</th>
+    <th>Creation Date</th>
+    <th>Processing Date</th>
+    <th>Total</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="app : ${applicationsList}">
+    <td th:text="${app.applicationId}"></td>
+    <td th:text="${app.clientId}"></td>
+    <td th:text="${app.statusId}"></td>
+    <td th:text="${app.creationDate}"></td>
+    <td th:text="${app.processingDate}"></td>
+    <td th:text="${app.total}"></td>
+    <td>
+      <a th:href="@{/applications/edit(id=${app.applicationId})}">Edit</a>
+      <a th:href="@{/applications/delete(id=${app.applicationId})}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
